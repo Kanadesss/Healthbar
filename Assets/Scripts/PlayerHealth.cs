@@ -1,16 +1,24 @@
 using UnityEngine;
+using UnityEngine.Events;
+using System;
 
 public class PlayerHealth : MonoBehaviour {
   [SerializeField] private float _maxHealth;
-  [SerializeField] private HealthBar _healthBar;
+  //[SerializeField] private HealthBar _healthBar;
   [SerializeField] private float _damageValue;
   [SerializeField] private float _healValue;
+  [SerializeField] private UnityEvent _setHealth;
 
+  public static Action<float> onSetHealth;
   private float _currentHealth;
 
-  void Start() {
-    _healthBar.SetMaxHealth(_maxHealth);
+
+  void OnEnable() {
     _currentHealth = _maxHealth;
+    if(onSetHealth == null) {
+      Debug.Log("NULL");
+    }
+    onSetHealth?.Invoke(_maxHealth);
   }
 
   public void HealthDamage() {
@@ -20,7 +28,7 @@ public class PlayerHealth : MonoBehaviour {
     } else {
       _currentHealth = 0;
     }
-    _healthBar.SetHealth(_currentHealth);
+    onSetHealth?.Invoke(_currentHealth);
   }
 
   public void HealthHeal() {
@@ -30,6 +38,6 @@ public class PlayerHealth : MonoBehaviour {
     } else {
       _currentHealth = _maxHealth;
     }
-    _healthBar.SetHealth(_currentHealth);
+    onSetHealth?.Invoke(_currentHealth);
   }
 }

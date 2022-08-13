@@ -9,8 +9,18 @@ public class HealthBar : MonoBehaviour {
   private float _signDifference;
   private bool _isHealthSet;
 
-  void Start () {
+  void Awake() {
+    PlayerHealth.onSetHealth += SetMaxHealth;
+  }
+
+  void OnDisable() {
+    PlayerHealth.onSetHealth -= SetHealth;
+  }
+
+  void Start() {
     _isHealthSet = true;
+    PlayerHealth.onSetHealth -= SetMaxHealth;
+    PlayerHealth.onSetHealth += SetHealth;
   }
 
   void Update() {
@@ -20,12 +30,12 @@ public class HealthBar : MonoBehaviour {
     }
   }
 
-  public void SetMaxHealth(float maxHealth) {
+  private void SetMaxHealth(float maxHealth) {
     _slider.maxValue = maxHealth;
     _slider.value = maxHealth;
   }
 
-  public void SetHealth(float health) {
+  private void SetHealth(float health) {
     _isHealthSet = false;
     _healthTarget = health;
     _signDifference = _slider.value - _healthTarget < 0 ? -1 : 1;
