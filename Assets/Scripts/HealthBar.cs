@@ -30,7 +30,6 @@ public class HealthBar : MonoBehaviour {
     _healthTarget = health;
     _healthDifference = _slider.value - _healthTarget;
     _signDifference = _healthDifference < 0 ? -1 : 1;
-    Debug.Log(_signDifference);
   }
 
   private void SetIntermediateHealth(float fillSpeed) {
