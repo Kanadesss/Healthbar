@@ -362,9 +362,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 100
-  _healthBar: {fileID: 106136563}
   _damageValue: 10
   _healValue: 10
+  _setHealth:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!212 &351532301
 SpriteRenderer:
   m_ObjectHideFlags: 0
