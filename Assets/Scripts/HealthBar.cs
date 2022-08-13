@@ -7,7 +7,6 @@ public class HealthBar : MonoBehaviour {
 
   private float _healthTarget;
   private float _signDifference;
-  private float _healthDifference;
   private bool _isHealthSet;
 
   void Start () {
@@ -28,8 +27,7 @@ public class HealthBar : MonoBehaviour {
   public void SetHealth(float health) {
     _isHealthSet = false;
     _healthTarget = health;
-    _healthDifference = _slider.value - _healthTarget;
-    _signDifference = _healthDifference < 0 ? -1 : 1;
+    _signDifference = _slider.value - _healthTarget < 0 ? -1 : 1;
   }
 
   private void SetIntermediateHealth(float fillSpeed) {
