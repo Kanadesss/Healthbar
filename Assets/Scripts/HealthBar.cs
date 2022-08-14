@@ -24,10 +24,11 @@ public class HealthBar : MonoBehaviour {
   }
 
   void Update() {
-    if(!_isHealthSet) {
-      
+
+    if(!_isHealthSet) {   
       SetIntermediateHealth(_fillSpeed * Time.deltaTime);
     }
+
   }
 
   private void SetMaxHealth(float maxHealth) {
@@ -44,10 +45,10 @@ public class HealthBar : MonoBehaviour {
   private void SetIntermediateHealth(float fillSpeed) {
     _slider.value -= _signDifference * fillSpeed;
     
-    if(Mathf.Abs(_slider.value - _healthTarget) <= 0.2f) {
-      
+    if(Mathf.Abs(_slider.value - _healthTarget) <= 0.2f) {     
       _slider.value = _healthTarget;
       _isHealthSet = true;
     }
+
   }
 }

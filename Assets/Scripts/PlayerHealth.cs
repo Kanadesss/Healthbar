@@ -15,29 +15,33 @@ public class PlayerHealth : MonoBehaviour {
 
   void OnEnable() {
     _currentHealth = _maxHealth;
+
     if(onSetHealth == null) {
       Debug.Log("NULL");
     }
+
     onSetHealth?.Invoke(_maxHealth);
   }
 
   public void HealthDamage() {
-    if(_currentHealth - _damageValue > 0) {
 
+    if(_currentHealth - _damageValue > 0) {
       _currentHealth -= _damageValue;
     } else {
       _currentHealth = 0;
     }
+
     onSetHealth?.Invoke(_currentHealth);
   }
 
   public void HealthHeal() {
-    if(_currentHealth + _healValue < _maxHealth) {
 
+    if(_currentHealth + _healValue < _maxHealth) {
       _currentHealth += _healValue;
     } else {
       _currentHealth = _maxHealth;
     }
+
     onSetHealth?.Invoke(_currentHealth);
   }
 }
