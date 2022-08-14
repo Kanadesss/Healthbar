@@ -4,7 +4,6 @@ using System;
 
 public class PlayerHealth : MonoBehaviour {
   [SerializeField] private float _maxHealth;
-  //[SerializeField] private HealthBar _healthBar;
   [SerializeField] private float _damageValue;
   [SerializeField] private float _healValue;
   [SerializeField] private UnityEvent _setHealth;
@@ -12,11 +11,10 @@ public class PlayerHealth : MonoBehaviour {
   public static Action<float> onSetHealth;
   private float _currentHealth;
 
-
   void OnEnable() {
     _currentHealth = _maxHealth;
 
-    if(onSetHealth == null) {
+    if (onSetHealth == null) {
       Debug.Log("NULL");
     }
 
@@ -25,7 +23,7 @@ public class PlayerHealth : MonoBehaviour {
 
   public void HealthDamage() {
 
-    if(_currentHealth - _damageValue > 0) {
+    if (_currentHealth - _damageValue > 0) {
       _currentHealth -= _damageValue;
     } else {
       _currentHealth = 0;
